@@ -16,7 +16,8 @@
 			First name:<br> <input type="text" name="firstName"><br>
 			Last name:<br> <input type="text" name="lastName"><br>
 			Email name:<br> <input type="email" name="emailName"><br>
-			Phone Number: <br> <input type="tel" name="pNumber"><br>
+			Phone Number: <br> <input type="tel" name="pNumber"
+			placeholder="123-456-7890" required ><br>
 			Create User name:<br> <input type="text" name="userName"><br>
 			Create password:<br> <input type="password" name="userPass"><br>
 			Specify Gender: <br> <input type="radio" name="gender"
