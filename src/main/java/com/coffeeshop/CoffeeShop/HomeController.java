@@ -1,13 +1,19 @@
 package com.coffeeshop.CoffeeShop;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.coffeeshop.CoffeeShop.dao.MemberDao;
+
 @Controller
 public class HomeController {
-
+	
+	@Autowired
+	MemberDao dao;
+	
 	@RequestMapping("/")
 	public ModelAndView indexPage() {
 		return new ModelAndView("index");
@@ -15,15 +21,18 @@ public class HomeController {
 	
 	@RequestMapping("/register")
 	public ModelAndView registerPage() {
-		return new ModelAndView("register");
+		return new ModelAndView("register","members",dao.findAll());
 	}
 	
-	@RequestMapping("/adduser")
-	public ModelAndView addUserPage(@RequestParam("firstName") String fName, @RequestParam("lastName") String lName,
-			@RequestParam("emailName") String eName, @RequestParam("userPass") String passName
-			, @RequestParam("gender") String genderType, @RequestParam("userName") String uName
-			, @RequestParam("pNumber") String phoneNumber) {
-		return new ModelAndView("adduser", "userInfo", fName + " " + lName + " " + eName);
+	
+	@RequestMapping("addnewmember")
+	public ModelAndView addNew(@RequestParam("userName") String userName,
+			@RequestParam("email") String email) {
+		dao.insertMember(userName, email);
+		
+		return new ModelAndView("register", "Members", dao.findAll());
 	}
+	
+	
 	
 }

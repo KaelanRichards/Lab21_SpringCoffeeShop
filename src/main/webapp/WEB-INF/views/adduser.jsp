@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Form Summary</title>
 </head>
-<body>${userInfo }
+<body>${member}
 
 </body>
 </html>
