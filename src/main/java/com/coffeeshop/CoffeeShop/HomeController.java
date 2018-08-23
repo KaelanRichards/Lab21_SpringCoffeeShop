@@ -16,12 +16,12 @@ public class HomeController {
 	
 	@RequestMapping("/")
 	public ModelAndView indexPage() {
-		return new ModelAndView("index");
+		return new ModelAndView("index","products", dao.findAllProd());
 	}
 	
 	@RequestMapping("/register")
 	public ModelAndView registerPage() {
-		return new ModelAndView("register","members",dao.findAll());
+		return new ModelAndView("register","members",dao.findAllMem());
 	}
 	
 	
@@ -30,8 +30,16 @@ public class HomeController {
 			@RequestParam("email") String email) {
 		dao.insertMember(userName, email);
 		
-		return new ModelAndView("register", "Members", dao.findAll());
+		return new ModelAndView("register", "Members", dao.findAllMem());
 	}
+	
+//	@RequestMapping("displayproducts")
+//	public ModelAndView addNew(@RequestParam("name") String name,
+//			@RequestParam("description") String description, @RequestParam("price") String price) {
+//		
+//		
+//		return new ModelAndView("index", "products", dao.findAllProd());
+//	}
 	
 	
 	

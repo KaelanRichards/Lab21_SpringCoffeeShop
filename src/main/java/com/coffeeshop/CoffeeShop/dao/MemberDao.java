@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.coffeeshop.CoffeeShop.entity.Members;
+import com.coffeeshop.CoffeeShop.entity.Products;
 
 
 
@@ -18,8 +19,13 @@ public class MemberDao {
 	JdbcTemplate jdbcTemplate;
 
 	// select * from Members
-	public List<Members> findAll() {
+	public List<Members> findAllMem() {
 		return jdbcTemplate.query("select * from Members", new BeanPropertyRowMapper<Members>(Members.class));
+
+	}
+	
+	public List<Products> findAllProd() {
+		return jdbcTemplate.query("select * from Products", new BeanPropertyRowMapper<Products>(Products.class));
 
 	}
 	
